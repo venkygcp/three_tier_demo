@@ -7,9 +7,9 @@ resource "google_cloud_run_service" "api" {
     spec {
       service_account_name = google_service_account.runsa.email
       containers {
-        image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.basename}-app/api"
+        image = "Image Path"
         env {
-          name = "todo_host"
+          name = "db_host"
           value_from {
             secret_key_ref {
               name = google_secret_manager_secret.db_password.secret_id
@@ -18,16 +18,16 @@ resource "google_cloud_run_service" "api" {
           }
         }
         env {
-          name  = "todo_user"
-          value = "todo_user"
+          name  = "db_user"
+          value = "db_user"
         }
         env {
-          name  = "todo_pass"
-          value = "todo_pass"
+          name  = "db_pass"
+          value = "db_pass"
         }
         env {
-          name  = "todo_name"
-          value = "todo"
+          name  = "db_name"
+          value = "db"
         }
       }
     }
